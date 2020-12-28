@@ -47,6 +47,8 @@ const indexRouter = require("./routes/index");
 
 app.use("/", indexRouter);
 app.use("/api/book", apiRouter);
+app.use("/api/post", apiRouter);
+
 
 // listen for requests :)
 const listener = app.listen(process.env.PORT, function() {

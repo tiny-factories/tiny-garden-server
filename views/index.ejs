@@ -12,24 +12,24 @@
   </head>
   <body class="container">
     <h1>
-      CRUDy Book Browser
+      CRUDy post Browser
     </h1>
-    <% if (books) { %>
-    <p>There are <%= books.length %> books in the database.</p>
+    <% if (posts) { %>
+    <p>There are <%= posts.length %> posts in the database.</p>
     <table class="table">
       <tbody><tr><th>Title</th><th>Author</th><th>Rating</th></tr>
-        <% books.forEach(function(book){ %>
+        <% posts.forEach(function(post){ %>
         <tr>
-          <td><%= book.title %></td>
-          <td><%= book.author %></td>
-          <td><%= book.rating %></td>
+          <td><%= post.username %></td>
+          <td><%= post.channel %></td>
+          <td><%= post.body %></td>
 
         </tr>
         <% }); %>
       </tbody>
     </table>
     <% } else { %>
-    <p>There are no books in the database.</p>
+    <p>There are no posts in the database.</p>
     <% } %>
     <!-- include the Glitch button to show what the webpage is about and
 to make it easier for folks to view source and remix -->
