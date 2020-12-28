@@ -3,12 +3,12 @@ const express = require('express');
 const router = express.Router()
 
 //import data models
-const Book = require("../models/book");
+const Post = require("../models/post");
 
 // RETRIEVE all books
 router.get("/", function(req,res){
-  Book.find({}, function (err, book_list){
-    res.render("index", {books:book_list});
+  Post.find({}, function (err, post_list){
+    res.render("index", {posts:post_list});
   });
 });
 

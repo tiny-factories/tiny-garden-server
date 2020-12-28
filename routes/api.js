@@ -1,29 +1,51 @@
 // Route handlers
-const express = require('express');
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
 //import data models
 const Book = require("../models/book");
+const Member = require("../models/post");
 
 // RETREIVE all books
-router.get("/", function(req,res){
-  Book.find({}, function (err, book_list){
+router.get("/", function(req, res) {
+  Book.find({}, function(err, book_list) {
     res.json(book_list);
   });
 });
 
 // RETRIEVE a specific book
-router.get("/:bookId", function(req, res){
+router.get("/:bookId", function(req, res) {
   Book.findById(req.params.bookId, function(err, book) {
-    res.json(book)
+    res.json(book);
   });
 });
 
 //CREATE
-router.post('/', function(req, res){
-  let book = new Book(req.body);
-  book.save();
-  res.status(201).send(book);
+// router.post('/', function(req, res){
+//   let book = new Book(req.body);
+//   book.save();
+//   res.status(201).send(book);
+//   console.log("new book!");
+// });
+
+//CREATE Member Post
+router.post("/", function(req, res) {
+  let member = new Member(req.body);
+  
+  //Author Info
+  member.slackAuthorId = req.body.user.id;
+  member.slackAuthorUsername = req.body.user.username;
+  member.slackAuthorName = req.body.user.name;
+  //Slack Info
+  member.slackChannelName = req.body.channel.name;
+  member.slackChannelId = req.body.channel.id;
+  //Post Details
+  member.createdAt = req.body.message_ts
+  member.content = req.body.message.text;
+
+  //NEED TO STORE SLACK AS NON NESTED VERABLE
+  member.save();
+  res.status(201).send("Post data recieved");
 });
 
 //UPDATE
@@ -38,15 +60,14 @@ router.put("/:bookId", function(req, res) {
 });
 
 //DELETE
-router.delete("/:bookId", function(req, res){
+router.delete("/:bookId", function(req, res) {
   Book.findById(req.params.bookId, function(err, book) {
-    book.remove(function(err){
-        if(err){
-          res.status(500).send(err);
-        }
-        else{
-          res.status(204).send('removed');
-        }
+    book.remove(function(err) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.status(204).send("removed");
+      }
     });
   });
 });

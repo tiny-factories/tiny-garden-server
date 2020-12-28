@@ -1,0 +1,79 @@
+({
+  "type": "message_action",
+  "token": "w7K5fCIn1SQ4GBC90OKDbfKJ",
+  "action_ts": "1608389497.990431",
+  "team": { "id": "T01FH2C7WH0", "domain": "tinyfactories" },
+  "user": {
+    "id": "U01FAA9A6RL",
+    "username": "gndclouds",
+    "team_id": "T01FH2C7WH0",
+    "name": "gndclouds"
+  },
+  "channel": { "id": "C01FW6AP5KP", "name": "１wondering" },
+  "is_enterprise_install": false,
+  "enterprise": null,
+  "callback_id": "post_to_tinyprofile",
+  "trigger_id": "1588597910659.1527080268578.9eaa0304cfa3fb1738fbabd86219d852",
+  "response_url": "https://hooks.slack.com/app/T01FH2C7WH0/1612233926304/YUbffKmmmpnMUvaNYuhw2uL9",
+  "message_ts": "1607099164.011300",
+  "message": {
+    "client_msg_id": "1B96DB1E-68AF-4802-A801-C89D34CDC867",
+    "type": "message",
+    "text": "For the past few months, I have been collecting examples of Eco-friendly brands and products. In the hopes of making a simple website which allows you to look for clothes, headphones, shoes, etc, and get back products that are friendly or mindful of how they affect the planet. Are there types of thing which you might find interesting about these types of products or criteria you would want to know about them which could be included on this site before purchasing ?\n\nA few I had on top of mind:\n• create a comprehensive score based on materials, energy, transit, labor practice, and such to rank each product. \n• Include what makes it better then it’s alternative \n• For brands link to roadmaps or proof of their efforts to reduce there climate impacts \n• Product images, materials, colors, etc ",
+    "user": "U01FAA9A6RL",
+    "ts": "1607099164.011300",
+    "team": "T01FH2C7WH0",
+    "blocks": [[Object]],
+    "thread_ts": "1607099164.011300",
+    "reply_count": 5,
+    "reply_users_count": 3,
+    "latest_reply": "1607518765.000500",
+    "reply_users": ["U01FAE3LPSS", "U01FAA9A6RL", "U01FEJPV8R3"],
+    "subscribed": true,
+    "last_read": "1607518765.000500"
+  }
+},
+ 
+ 
+{
+  "type": "view_submission",
+  "team": { "id": "T01FH2C7WH0", "domain": "tinyfactories" },
+  "user": {
+    "id": "U01FAA9A6RL",
+    "username": "gndclouds",
+    "name": "gndclouds",
+    "team_id": "T01FH2C7WH0"
+  },
+  "api_app_id": "A01GT91BY76",
+  "token": "w7K5fCIn1SQ4GBC90OKDbfKJ",
+  "trigger_id": "1573618696375.1527080268578.2b88c3a337d08daa8566be222ac2a882",
+  "view": {
+    "id": "V01HAHKSXMZ",
+    "team_id": "T01FH2C7WH0",
+    "type": "modal",
+    "blocks": [[Object], [Object]],
+    "private_metadata": "",
+    "callback_id": "clipit",
+    "state": { "values": [Object] },
+    "hash": "1608389498.dj62HOTZ",
+    "title": {
+      "type": "plain_text",
+      "text": "Save it to ClipIt!",
+      "emoji": true
+    },
+
+    "clear_on_close": false,
+    "notify_on_close": false,
+    "close": null,
+    "submit": { "type": "plain_text", "text": "ClipIt", "emoji": true },
+    "previous_view_id": null,
+    "root_view_id": "V01HAHKSXMZ",
+    "app_id": "A01GT91BY76",
+    "external_id": "",
+    "app_installed_team_id": "T01FH2C7WH0",
+    "bot_id": "B01HM68J7RN"
+  },
+  "response_urls": [],
+  "is_enterprise_install": false,
+  "enterprise": null
+})
