@@ -6,19 +6,33 @@ const router = express.Router();
 const Book = require("../models/book");
 const Member = require("../models/post");
 
-// RETREIVE all books
-router.get("/", function(req, res) {
-  Book.find({}, function(err, book_list) {
-    res.json(book_list);
-  });
+//CREATE Member Post
+router.post("/", function(req, res) {
+  let member = new Member(req.body);
+  
+  //Mapping incoming Post to Database Schema Post Info
+  member.type = req.body[0].name;
+  member.content = req.body[0].value;
+  console.log(req);
+  member.save(); // Save to db
+  res.status(201).send("Saved to TinyProfiles db");
 });
 
+// EXAMPLES BASED ON SAVE TO A BOOK LIST
+
+// RETREIVE all books
+// router.get("/", function(req, res) {
+//   Book.find({}, function(err, book_list) {
+//     res.json(book_list);
+//   });
+// });
+
 // RETRIEVE a specific book
-router.get("/:bookId", function(req, res) {
-  Book.findById(req.params.bookId, function(err, book) {
-    res.json(book);
-  });
-});
+// router.get("/:bookId", function(req, res) {
+//   Book.findById(req.params.bookId, function(err, book) {
+//     res.json(book);
+//   });
+// });
 
 //CREATE
 // router.post('/', function(req, res){
@@ -28,47 +42,27 @@ router.get("/:bookId", function(req, res) {
 //   console.log("new book!");
 // });
 
-//CREATE Member Post
-router.post("/", function(req, res) {
-  let member = new Member(req.body);
-  
-  //Author Info
-  member.slackAuthorId = req.body.user.id;
-  member.slackAuthorUsername = req.body.user.username;
-  member.slackAuthorName = req.body.user.name;
-  //Slack Info
-  member.slackChannelName = req.body.channel.name;
-  member.slackChannelId = req.body.channel.id;
-  //Post Details
-  member.createdAt = req.body.message_ts
-  member.content = req.body.message.text;
-
-  //NEED TO STORE SLACK AS NON NESTED VERABLE
-  member.save();
-  res.status(201).send("Post data recieved");
-});
-
 //UPDATE
-router.put("/:bookId", function(req, res) {
-  Book.findById(req.params.bookId, function(err, book) {
-    book.title = req.body.title;
-    book.author = req.body.author;
-    book.rating = req.body.title;
-    book.save();
-    res.json(book);
-  });
-});
+// router.put("/:bookId", function(req, res) {
+//   Book.findById(req.params.bookId, function(err, book) {
+//     book.title = req.body.title;
+//     book.author = req.body.author;
+//     book.rating = req.body.title;
+//     book.save();
+//     res.json(book);
+//   });
+// });
 
 //DELETE
-router.delete("/:bookId", function(req, res) {
-  Book.findById(req.params.bookId, function(err, book) {
-    book.remove(function(err) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.status(204).send("removed");
-      }
-    });
-  });
-});
+// router.delete("/:bookId", function(req, res) {
+//   Book.findById(req.params.bookId, function(err, book) {
+//     book.remove(function(err) {
+//       if (err) {
+//         res.status(500).send(err);
+//       } else {
+//         res.status(204).send("removed");
+//       }
+//     });
+//   });
+// });
 module.exports = router;
