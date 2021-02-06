@@ -17,11 +17,12 @@
     <% if (posts) { %>
     <p>There are <%= posts.length %> posts in the database.</p>
     <table class="table">
-      <tbody><tr><th>Title</th><th>Author</th><th>Rating</th></tr>
+      <tbody><tr><th>Time</th><th>Author</th><th>Channel</th><th>Content</th></tr>
         <% posts.forEach(function(post){ %>
         <tr>
-          <td><%= post.name %></td>
-          <td><%= post.value %></td>
+          <td><%= new Date(post.createdAt).toLocaleString() %></td>
+          <td><%= post.creatorId %></td>
+          <td><%= post.discordChannelId %></td>
           <td><%= post.content %></td>
 
         </tr>

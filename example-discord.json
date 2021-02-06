@@ -1,0 +1,199 @@
+   ServerResponse {
+     domain: null,
+     _events: { finish: [Function: bound resOnFinish] },
+     _eventsCount: 1,
+     _maxListeners: undefined,
+     output: [],
+     outputEncodings: [],
+     outputCallbacks: [],
+     outputSize: 0,
+     writable: true,
+     _last: false,
+     upgrading: false,
+10:24 PM
+     chunkedEncoding: false,
+     shouldKeepAlive: false,
+10:24 PM
+     useChunkedEncodingByDefault: true,
+10:24 PM
+     sendDate: true,
+10:24 PM
+     _removedConnection: false,
+10:24 PM
+     _removedContLen: false,
+10:24 PM
+     _removedTE: false,
+10:24 PM
+     _contentLength: null,
+10:24 PM
+     _hasBody: true,
+10:24 PM
+     _trailer: '',
+10:24 PM
+     finished: false,
+10:24 PM
+     _headerSent: false,
+10:24 PM
+     socket: 
+10:24 PM
+      Socket {
+10:24 PM
+        connecting: false,
+10:24 PM
+        _hadError: false,
+10:24 PM
+        _handle: [Object],
+10:24 PM
+        _parent: null,
+10:24 PM
+        _host: null,
+10:24 PM
+        _readableState: [Object],
+10:24 PM
+        readable: true,
+10:24 PM
+        domain: null,
+10:24 PM
+        _events: [Object],
+10:24 PM
+        _eventsCount: 9,
+10:24 PM
+        _maxListeners: undefined,
+10:24 PM
+        _writableState: [Object],
+10:24 PM
+        writable: true,
+10:24 PM
+        allowHalfOpen: true,
+10:24 PM
+        _bytesDispatched: 0,
+10:24 PM
+        _sockname: null,
+10:24 PM
+        _pendingData: null,
+10:24 PM
+        _pendingEncoding: '',
+10:24 PM
+        server: [Object],
+10:24 PM
+        _server: [Object],
+10:24 PM
+        _idleTimeout: 120000,
+10:24 PM
+        _idleNext: [Object],
+10:24 PM
+        _idlePrev: [Object],
+10:24 PM
+        _idleStart: 19129,
+10:24 PM
+        _destroyed: false,
+10:24 PM
+        parser: [Object],
+10:24 PM
+        on: [Function: socketOnWrap],
+10:24 PM
+        _paused: false,
+10:24 PM
+        _httpMessage: [Circular],
+10:24 PM
+        [Symbol(asyncId)]: 136,
+10:24 PM
+        [Symbol(bytesRead)]: 0,
+10:24 PM
+        [Symbol(asyncId)]: 138,
+10:24 PM
+        [Symbol(triggerAsyncId)]: 136 },
+10:24 PM
+     connection: 
+10:24 PM
+      Socket {
+10:24 PM
+        connecting: false,
+10:24 PM
+        _hadError: false,
+10:24 PM
+        _handle: [Object],
+10:24 PM
+        _parent: null,
+10:24 PM
+        _host: null,
+10:24 PM
+        _readableState: [Object],
+10:24 PM
+        readable: true,
+10:24 PM
+        domain: null,
+10:24 PM
+        _events: [Object],
+10:24 PM
+        _eventsCount: 9,
+10:24 PM
+        _maxListeners: undefined,
+10:24 PM
+        _writableState: [Object],
+10:24 PM
+        writable: true,
+10:24 PM
+        allowHalfOpen: true,
+10:24 PM
+        _bytesDispatched: 0,
+10:24 PM
+        _sockname: null,
+10:24 PM
+        _pendingData: null,
+10:24 PM
+        _pendingEncoding: '',
+10:24 PM
+        server: [Object],
+10:24 PM
+        _server: [Object],
+10:24 PM
+        _idleTimeout: 120000,
+10:24 PM
+        _idleNext: [Object],
+10:24 PM
+        _idlePrev: [Object],
+10:24 PM
+        _idleStart: 19129,
+10:24 PM
+        _destroyed: false,
+10:24 PM
+        parser: [Object],
+10:24 PM
+        on: [Function: socketOnWrap],
+10:24 PM
+        _paused: false,
+10:24 PM
+        _httpMessage: [Circular],
+10:24 PM
+        [Symbol(asyncId)]: 136,
+10:24 PM
+        [Symbol(bytesRead)]: 0,
+10:24 PM
+        [Symbol(asyncId)]: 138,
+10:24 PM
+        [Symbol(triggerAsyncId)]: 136 },
+10:24 PM
+     _header: null,
+10:24 PM
+     _onPendingData: [Function: bound updateOutgoingData],
+10:24 PM
+     _sent100: false,
+10:24 PM
+     _expect_continue: false,
+10:24 PM
+     req: [Circular],
+10:24 PM
+     locals: {},
+10:24 PM
+     [Symbol(outHeadersKey)]: { 'x-powered-by': [Array] } },
+10:24 PM
+  body: [ { value: 'fsrf', name: 'post' } ],
+10:24 PM
+  _body: true,
+
+  length: undefined,
+
+  read: [Function],
+
+  route: Route { path: '/', stack: [ [Object] ], methods: { post: true } } }

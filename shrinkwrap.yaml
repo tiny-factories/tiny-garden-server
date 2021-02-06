@@ -2,7 +2,9 @@ dependencies:
   body-parser: 1.19.0
   ejs: 3.1.5
   express: 4.17.1
+  mongodb: 3.6.4
   mongoose: 5.11.13
+  nanoid: 3.1.20
 packages:
   /@types/bson/4.0.3:
     dependencies:
@@ -427,6 +429,20 @@ packages:
       saslprep: 1.0.3
     resolution:
       integrity: sha512-rOZuR0QkodZiM+UbQE5kDsJykBqWi0CL4Ec2i1nrGrUI3KO11r6Fbxskqmq3JK2NH7aW4dcccBuUujAP0ERl5w==
+  /mongodb/3.6.4:
+    dependencies:
+      bl: 2.2.1
+      bson: 1.1.5
+      denque: 1.5.0
+      require_optional: 1.0.1
+      safe-buffer: 5.2.1
+    dev: false
+    engines:
+      node: '>=4'
+    optionalDependencies:
+      saslprep: 1.0.3
+    resolution:
+      integrity: sha512-Y+Ki9iXE9jI+n9bVtbTOOdK0B95d6wVGSucwtBkvQ+HIvVdTCfpVRp01FDC24uhC/Q2WXQ8Lpq3/zwtB5Op9Qw==
   /mongoose-legacy-pluralize/1.0.2:
     dev: false
     peerDependencies:
@@ -482,6 +498,13 @@ packages:
     dev: false
     resolution:
       integrity: sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
+  /nanoid/3.1.20:
+    dev: false
+    engines:
+      node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1
+    hasBin: true
+    resolution:
+      integrity: sha512-a1cQNyczgKbLX9jwbS/+d7W8fX/RfgYR7lVWwWOGIPNgK2m0MWvrGF6/m4kk6U3QcFMnZf3RIhL0v2Jgh/0Uxw==
   /negotiator/0.6.2:
     dev: false
     engines:
@@ -711,4 +734,6 @@ specifiers:
   body-parser: ^1.19.0
   ejs: ^3.1.5
   express: ^4.17.1
+  mongodb: ^3.6.4
   mongoose: ^5.11.13
+  nanoid: ^3.1.19
