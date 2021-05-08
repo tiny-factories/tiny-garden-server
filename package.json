@@ -8,11 +8,16 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mongoose": "^5.11.13",
+    "mongoose": "^5.12.7",
     "body-parser": "^1.19.0",
-    "ejs": "^3.1.5",
-    "nanoid": "^3.1.19",
-    "mongodb": "^3.6.4"
+    "ejs": "^3.1.6",
+    "nanoid": "^3.1.21",
+    "mongodb": "^3.6.6",
+    "node-cron": "^3.0.0",
+    "rss-parser": "^3.12.0",
+    "fs": "^0.0.2",
+    "edit-json-file": "^1.6.0",
+    "fetch-opengraph": "^1.0.23"
   },
   "engines": {
     "node": "8.x"

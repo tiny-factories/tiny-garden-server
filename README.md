@@ -1,3 +1,13 @@
+# tiny-garden-server
+
+
+KEYS
+```
+USERNAME=examplemongodbadmin
+PASSWORD=3xampl3m0ng0passw0rd
+HOST=somecluster.mongodb.net
+DATABASE=exampledb
+```
 CRUD Application Example
 
 Uses Express.js and Mongoose to connect to a [Mongo Atlas](https://www.mongodb.com/cloud/atlas) database.
@@ -30,8 +40,8 @@ API tests with Postman
 
 `GET /api/book`
 
+JOBS
 
-Made by [Glitch](https://glitch.com/)
--------------------
 
-\ ゜o゜)ノ
+## Resources
+- [building a restful api with express and mongodb](https://dev.to/aurelkurtula/building-a-restful-api-with-express-and-mongodb--3mmh)

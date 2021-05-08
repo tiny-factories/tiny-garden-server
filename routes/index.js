@@ -11,5 +11,10 @@ router.get("/", function(req,res){
     res.render("index", {posts:post_list});
   });
 });
+router.get("/posts", function(req,res){
+  Post.find({}, function (err, post_list){
+    res.json(post_list)
+  });
+});
 
 module.exports = router;

@@ -12,6 +12,10 @@ const MemberPostSchema = new Schema(
     content: { type: String },
     creatorId: { type: String },
     source: { type: String },
+    buttonCount: { type: String },
+    discordChannelId: { type: String },
+  externalSourceUrl: { type: String },
+
   },
   { timestamps: true }
 );

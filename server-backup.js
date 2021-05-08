@@ -1,4 +1,4 @@
-console.log("🔄 Restarting ...");
+console.log("In server.js!");
 
 // init project
 const express = require("express");
@@ -74,15 +74,9 @@ const listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
-//Healper Functions
-function setKey(item, index) {
-  var externalSourceUrl = "{ externalSourceUrl: " + item + "}";
-  return externalSourceUrl;
-}
-
 // CRON JOBS
 cron.schedule("* * * * *", () => {
-  console.log("Checking RSS");
+  console.log("Running cron at ");
 
   //IMPORT LINKS FROM DATABASE
 
@@ -113,7 +107,8 @@ cron.schedule("* * * * *", () => {
     // }
   ];
 
-  // Checking Links for change to Data
+  // Checking Links for change to Data Time
+
   for (let i = 0; i < sitesToCheck.length; i++) {
     const arr = []; // make new array for articles
 
@@ -134,43 +129,85 @@ cron.schedule("* * * * *", () => {
         );
 
         const arr = [];
+
         feed.items.forEach(item => {
           // Preform a lookup on that feed and get the articles links
-          let linkLookUp = item.link;
-          // const cd = arr.map(externalSourceUrl => ({[externalSourceUrl]: linkLookUp}));
-          arr.push(linkLookUp);
-        });
+            let linkLookUp = item.link;
 
-        var output = arr.map(setKey);
-        // console.log(output);
 
-        // Search for the array lf articels in the DB
-        MongoClient.connect(url, { useUnifiedTopology: true }, function(
-          err,
-          db
-        ) {
-          if (err) throw err;
-          var dbo = db.db("tinyprofiles");
-          //Find the first document in the customers collection:
-          // console.log("Array 0" + output[0]);
-          // console.log("Array 1" + output[1]);
+          // connext
 
-          dbo.collection("posts").find(output, function(err, result) {
-            // stack the array here some how
-            // Search by discordCreatorId
+          // then search
+          MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
             if (err) throw err;
-            console.log(result); // FIX: CLean this up (@Will: Look at if this is the correct varaible or if there is a way to retunr a lis of which object are and are not found fromt he search)
+            var dbo = db.db("tinyprofiles");
+            //Find the first document in the customers collection:
+            // console.log("Connecting to DB for Search");
+            // console.log("checking for link "+ item.link);
 
-            db.close();
-            console.log("DB Closed");
-          });
+
+//             dbo
+//               .collection("posts")
+//               .find({ externalSourceUrl: item.link }, function(err, result) {
+//                 // Search by discordCreatorId
+//                 if (err) throw err;
+//                 console.log("Results " + result);
+
+//                 db.close();
+//                 console.log("DB Closed");
+//               });
+//           });
+
+          // Check to see if links have been saved before in the DB (IT MAY BE BETTER TBULK CHECK FOIR THE LINKS VS ONE AT A TIME?)
+
+
+          // collection("posts").find({             //Look up links
+          //     urk: {$regex: linkLookUp}
+          // }).then(result => red.send(result));
+          //   console.log(result)
+
+          //           arr.push(item.link); // push each link into an array
+
+          // If the link has been found then Skip
+          //           if(link exists){
+          //                       // SKIP
+
+          //           }else{ // If the link is new then get the meta and save to DB
+          //             // Set meta data
+          //             // post to DB
+          //           }
+          //Get meta info form link
+          // POST into to database + user
         });
       } else {
         // If dates are the same then do nothing
         console.log("SKIPPING: " + sitesToCheck[i].url + " has no changes");
+
+        // LOG: Link has not be updatred
+        // Update: Link lastChecked
       }
+
+      // console.log(arr);
+      //       for (let j = 0; j < arr.length; j++) {
+
+      //       }
     })();
 
     arr.length = 0; // Clear Array
   }
 });
+
+// cron.schedule("* * * * *", () => {
+//   // runs every minute
+
+//   // create log
+//   const log = [];
+//   log.push("started at: " + new Date().toString());
+
+//   // logic here
+
+//   // save log
+//   log.push("no email sent");
+//   file.data.logs.unshift(log);
+//   file.save();
+// });
