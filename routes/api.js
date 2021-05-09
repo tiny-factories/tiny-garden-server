@@ -55,6 +55,20 @@ router.post("/", function(req, res) {
         // console.log(member);
         member.save(); // Save to db
         res.status(201).send("Saved to TinyProfiles db");
+      
+      // TODO: MODE TO NEW API ENDPOST POST?DISCORD DISCORD REQUESRTS SHO
+        // // console.log(req.body[1])
+        // //Mapping incoming Post to Database Schema Post Info
+        // member._id = nanoid(12);
+        // member.creatorId = creatorId;
+        // member.postFor = req.body[0].name;
+        // member.type = "post";
+        // member.source = "discord";
+        // member.content = req.body[0].value;
+        // member.discordChannelId = req.body[2];
+        // // console.log(member);
+        // member.save(); // Save to db
+        // res.status(201).send("Saved to TinyProfiles db");
       });
   });
 });
@@ -62,7 +76,7 @@ router.post("/", function(req, res) {
 
 
 //CREATE POST FROM RSS
-// router.post('/', function(req, res){
+// router.post('/rss', function(req, res){
 //   let book = new Book(req.body);
 //   book.save();
 //   res.status(201).send(book);
