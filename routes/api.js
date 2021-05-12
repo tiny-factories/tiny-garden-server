@@ -22,56 +22,90 @@ const url =
 //import data models
 const Book = require("../models/book");
 const Member = require("../models/post");
+const RssImport = require("../models/rss");
+
 
 //CREATE Member Post
-router.post("/", function(req, res) {
-  const lookUpById = req.body[1];
-  // console.log(lookUpById);
+router.post("/rss", function(req, res) {
+  const lookUpById = req.body[0];
+  console.log("RSS Post Recieved ");
   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
     if (err) throw err;
     var dbo = db.db("tinyprofiles");
     //Find the first document in the customers collection:
     dbo
       .collection("users")
-      .findOne({"discordCreatorId": { $eq: lookUpById }}, { _id: 1, discordCreatorId: 1 }, function(err, result) {
+      .findOne({"creatorId": { $eq: lookUpById }}, { _id: 1, discordCreatorId: 1 }, function(err, result) {
         // Search by discordCreatorId
         if (err) throw err;
         // console.log(result._id);
 
         db.close();
 
-        const creatorId = result._id;
+        const creatorId = req.body[0];
 
-        let member = new Member(req.body);
-        // console.log(req.body[1])
+        let member = new RssImport(req.body);
         //Mapping incoming Post to Database Schema Post Info
         member._id = nanoid(12);
         member.creatorId = creatorId;
         member.postFor = req.body[0].name;
         member.type = "post";
-        member.source = "discord";
-        member.content = req.body[0].value;
-        member.discordChannelId = req.body[2];
-        // console.log(member);
+        member.source = "RSS";
+        member.content = "";
+        member.discordChannelId = ""
+        member.openGraphTitle = req.body[1],
+        member.openGraphDescription = req.body[2],
+        member.openGraphMedia = req.body[4],
+        member.externalSourceUrl = req.body[3],
+        member.createdAt = req.body[5],
         member.save(); // Save to db
         res.status(201).send("Saved to TinyProfiles db");
-      
-      // TODO: MODE TO NEW API ENDPOST POST?DISCORD DISCORD REQUESRTS SHO
-        // // console.log(req.body[1])
-        // //Mapping incoming Post to Database Schema Post Info
-        // member._id = nanoid(12);
-        // member.creatorId = creatorId;
-        // member.postFor = req.body[0].name;
-        // member.type = "post";
-        // member.source = "discord";
-        // member.content = req.body[0].value;
-        // member.discordChannelId = req.body[2];
-        // // console.log(member);
-        // member.save(); // Save to db
-        // res.status(201).send("Saved to TinyProfiles db");
+        // console.log("Data from API POST "+ member);
+
+     
       });
   });
 });
+
+// router.post("/", function(req, res) {
+//   const lookUpById = req.body[1];
+//   console.log("SVR API");
+//   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("tinyprofiles");
+//     //Find the first document in the customers collection:
+//     dbo
+//       .collection("users")
+//       .findOne({"discordCreatorId": { $eq: lookUpById }}, { _id: 1, discordCreatorId: 1 }, function(err, result) {
+//         // Search by discordCreatorId
+//         if (err) throw err;
+//         // console.log(result._id);
+
+//         db.close();
+
+//         const creatorId = req.body[0];
+
+//         let member = new Member(req.body);
+//         // console.log(req.body[1])
+//         //Mapping incoming Post to Database Schema Post Info
+      
+
+//       // TODO: MODE TO NEW API ENDPOST POST?DISCORD DISCORD REQUESRTS SHO
+//         // console.log(req.body[1])
+//         //Mapping incoming Post to Database Schema Post Info
+//         member._id = nanoid(12);
+//         member.creatorId = creatorId;
+//         member.postFor = req.body[0].name;
+//         member.type = "post";
+//         member.source = "discord";
+//         member.content = req.body[0].value;
+//         member.discordChannelId = req.body[2];
+//         // console.log(member);
+//         member.save(); // Save to db
+//         res.status(201).send("Saved to TinyProfiles db");
+//       });
+//   });
+// });
 
 
 
@@ -118,15 +152,12 @@ router.get("/:postId", function(req, res) {
   });
 });
 
-
 // RETRIEVE a specific book
 // router.get("/:bookId", function(req, res) {
 //   Book.findById(req.params.bookId, function(err, book) {
 //     res.json(book);
 //   });
 // });
-
-
 
 //CREATE
 // router.post('/', function(req, res){
