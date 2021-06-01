@@ -28,6 +28,9 @@ app.use("/", indexRouter);
 app.use("/api/book", apiRouter);
 app.use("/api/post/rss", apiRouter);
 app.use("/api/post", apiRouter);
+app.use("/api/discord", apiRouter);
+
+
 
 app.use("/api/search", apiRouter);
 
@@ -36,10 +39,66 @@ const listener = app.listen(process.env.PORT, function() {
   console.log("Your app is listening on port " + listener.address().port);
 });
 
+//Database Connectons
+const mongoDB =
+  "mongodb+srv://" +
+  process.env.USERNAME +
+  ":" +
+  process.env.PASSWORD +
+  "@" +
+  process.env.HOST +
+  "/" +
+  process.env.DATABASE;
+
+mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+
 //Helper Functions
 function setKey(item, index) {
   var externalSourceUrl = "{ externalSourceUrl: " + item + "}";
   return externalSourceUrl;
+}
+function getLinks(item, index) {
+  
+  const cursor = mongoDB
+  .collection('users')
+  .find({
+    status: 'A'
+  })
+  .project({ item: 1, status: 1, instock: { $slice: -1 } });
+  
+//             MongoClient.connect(url, { useUnifiedTopology: true }, function(
+//             err,
+//             db
+//           ) {
+//             if (err) throw err;
+//             var dbo = db.db("tinyprofiles");
+//             console.log("Checking Link " + arr[j].link);
+//             var linkToSave = arr[j].link;
+//             var existingRecordsFromDb = [];
+//             dbo
+//               .collection("rssimports")
+//               .findOne({}, function(err, result) {
+//     if (err) throw err;
+//               var myJSON = JSON.stringify(result);
+
+//     console.log(result);
+//     db.close();
+              
+    
+//   });
+            
+//             // Save location 2 if checking aguenst array
+
+//             // logic here?
+//           });
+
+   var collection = mongoDB.getCollection('users');
+    collection.aggregate(
+      { $project : { _id : 1} },function(err, res){
+        res.toArray(function(err, realRes){
+          console.log("response roo==>",realRes);
+        });
+      });  
 }
 // CRON JOBS
 
@@ -49,17 +108,10 @@ var async = require("async"),
   FeedParser = require("feedparser"),
   request = require("request");
 
-let sitesToCheck = [];
-//
-// function GetRSSLinks(p1, p2) {
-//   db.users.find({}, {mediaSources:1},function(err, res){
-//         res.toArray(function(err, realRes){
-//           console.log("response roo==>",realRes);
-//         });
-//     }
 
-// )
-// }
+
+let sitesToCheck = [];
+// getLinks();
 
 
 // let sitesToCheck = [
@@ -95,17 +147,7 @@ let sitesToCheck = [];
 //   }
 // ];
 
-const mongoDB =
-  "mongodb+srv://" +
-  process.env.USERNAME +
-  ":" +
-  process.env.PASSWORD +
-  "@" +
-  process.env.HOST +
-  "/" +
-  process.env.DATABASE;
 
-mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
 var feedSchema = new Schema(
   {

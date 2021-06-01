@@ -23,6 +23,8 @@ const url =
 const Book = require("../models/book");
 const Member = require("../models/post");
 const RssImport = require("../models/rss");
+const Discord = require("../models/discord");
+
 
 
 //CREATE Member Post
@@ -65,6 +67,47 @@ router.post("/rss", function(req, res) {
      
       });
   });
+});
+
+router.post("/discord", function(req, res) {
+  const lookUpById = req.body[0];
+  console.log("RSS Post Recieved ");
+//   MongoClient.connect(url, { useUnifiedTopology: true }, function(err, db) {
+//     if (err) throw err;
+//     var dbo = db.db("tinyprofiles");
+//     //Find the first document in the customers collection:
+//     dbo
+//       .collection("users")
+//       .findOne({"creatorId": { $eq: lookUpById }}, { _id: 1, discordCreatorId: 1 }, function(err, result) {
+//         // Search by discordCreatorId
+//         if (err) throw err;
+//         // console.log(result._id);
+
+//         db.close();
+
+//         const creatorId = req.body[0];
+
+//         let member = new RssImport(req.body);
+//         //Mapping incoming Post to Database Schema Post Info
+//         member._id = nanoid(12);
+//         member.creatorId = creatorId;
+//         member.postFor = req.body[0].name;
+//         member.type = "post";
+//         member.source = "RSS";
+//         member.content = "";
+//         member.discordChannelId = ""
+//         member.openGraphTitle = req.body[1],
+//         member.openGraphDescription = req.body[2],
+//         member.openGraphMedia = req.body[4],
+//         member.externalSourceUrl = req.body[3],
+//         member.createdAt = req.body[5],
+//         member.save(); // Save to db
+//         res.status(201).send("Saved to TinyProfiles db");
+//         // console.log("Data from API POST "+ member);
+
+     
+//       });
+//   });
 });
 
 // router.post("/", function(req, res) {
@@ -160,12 +203,18 @@ router.get("/:postId", function(req, res) {
 // });
 
 //CREATE
-// router.post('/', function(req, res){
-//   let book = new Book(req.body);
-//   book.save();
-//   res.status(201).send(book);
-//   console.log("new book!");
-// });
+router.post('/discord/post', function(req, res){
+  // let book = new Book(req.body);
+  // book.save();
+  // res.status(201).send(book);
+  console.log("New post from discord!");
+});
+router.post('/discord/import', function(req, res){
+  // let book = new Book(req.body);
+  // book.save();
+  // res.status(201).send(book);
+  console.log("New import form!");
+});
 
 //UPDATE
 // router.put("/:bookId", function(req, res) {

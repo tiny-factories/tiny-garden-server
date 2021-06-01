@@ -4,6 +4,8 @@ const router = express.Router()
 
 //import data models
 const Post = require("../models/post");
+const Discord = require("../models/discord");
+
 
 // RETRIEVE all books
 router.get("/", function(req,res){

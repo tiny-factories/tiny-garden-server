@@ -2,7 +2,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const RssImportSchema = new Schema({
+const DiscordSchema = new Schema({
   // If incoming req has these verables they will be saved in thie strucutre int he database.
   // _id: "nanoid(12)",
   type: { type: String },
@@ -20,5 +20,5 @@ const RssImportSchema = new Schema({
 });
 
 // Export model
-module.exports = mongoose.model("RssImport", RssImportSchema);
+module.exports = mongoose.model("Discord", DiscordSchema);
 
